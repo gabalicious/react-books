@@ -1,0 +1,22 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+:global .MuiDataGrid-row.Mui-odd:not(.Mui-selected) {
+  background: rgb(220, 220, 220);
+}
+
+:global body .MuiDataGrid-root .MuiDataGrid-row.Mui-selected:hover {
+  color: lighten(white, 10%);
+  background: lighten(orangered, 20%);
+}
+:global body .MuiDataGrid-root .MuiDataGrid-row.Mui-selected {
+  color: lighten(white, 10%);
+  background: lighten(orangered, 10%);
+}
+
+:global body .MuiDataGrid-root .MuiDataGrid-row:hover {
+  color: lighten(white, 10%);
+  background: lighten(rgb(36, 4, 151), 30%);
+}
