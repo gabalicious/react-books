@@ -29,7 +29,7 @@ afterEach(() => {
     container = null;
 });
 
-test('loads and displays greeting', async () => {
+test('Simulate API Search w/ mock api and wait for data grid element to populate', async () => {
     act(() => {
         ReactDOM.render(<App />, container)
         Input = container.querySelector('.MuiInputBase-input.MuiOutlinedInput-input')
