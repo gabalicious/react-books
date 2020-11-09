@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./App.scss";
-import BookSearch from "../components/BookSearch/BookSearch.component"
+import BookSearch from "./components/BookSearch/BookSearch.component"
 const App = () => {
   return (
     <div className={style.App}>
