@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import BookTable from "../BookTable/BookTable.component"
 import style from "./BookSearch.scss";
-import axios from "axios"
 import { Button, TextField } from '@material-ui/core';
-
+import { fetchBooks } from '../../api'
 
 const BookSearch = () => {
-  const [value, setValue] = useState("");
-  const [results, setResults] = useState([])
+  const [value, setValue] = useState(JSON.parse(localStorage.getItem("searchParams")) || "");
+  const [results, setResults] = useState(JSON.parse(localStorage.getItem("results")) || [])
   const [page, setPage] = useState(1)
   const [totalItems, setTotalItems] = useState(0)
   const handleChange = (e) => {
@@ -16,12 +15,10 @@ const BookSearch = () => {
   }
   const handleSubmit = (e) => {
     e.preventDefault()
-    axios.get(`https://www.googleapis.com/books/v1/volumes?q=${value}&startIndex=${page - 1}&maxResults=10`)
+    fetchBooks(value)
       .then((response) => {
-        console.log(response.data)
         setResults(response.data.items)
         setPage(1)
-
         setTotalItems(response.data.totalItems)
       })
   }
