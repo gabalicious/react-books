@@ -1,13 +1,10 @@
 import React, { useState } from "react";
 import BookDetailModal from "../BookDetailModal/BookDetailModal.component"
-import * as style from "./BookTable.scss";
 import { DataGrid } from '@material-ui/data-grid';
 import { createRows } from '../../api'
 import Button from '@material-ui/core/Button';
 
-console.log(createRows)
 const BookTable = (props) => {
-  // const results = props.results || [];
   const [isModalOpen, setIsModalOpen] = useState(false);
   const rows = createRows(props.results) || [];
   const [detailsUrl, setDetailsUrl] = useState("");
@@ -39,17 +36,18 @@ const BookTable = (props) => {
     },
 
   ];
+
   if (rows.length > 0) {
     return (
       <div style={{ height: '75vh', width: '100%' }}>
-        <DataGrid pageSize={10}
-          paginationMode="server"
-          rowsPerPageOptions={[10]}
-          page={props.currentPage}
-          rowCount={props.totalItems}
-          pagination
-          onPageChange={(params) => (props.setPage(params.page))}
-          rows={rows} columns={columns} />
+        <div style={{ display: 'flex', height: '100%' }}>
+          <div style={{ flexGrow: 1 }}>
+            <DataGrid page={props.currentPage} onPageChange={(params) => (props.setPage(params.page))} disableSelectionOnClick={true} pageSize={10}
+              pagination
+              rows={rows} columns={columns} />
+          </div>
+        </div>
+
         <BookDetailModal detailsUrl={detailsUrl} handleClose={() => { setIsModalOpen(false) }} open={isModalOpen} />
       </div>
     );

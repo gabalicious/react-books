@@ -1,8 +1,6 @@
 import React from "react";
 import style from "./App.scss";
 import BookSearch from "../components/BookSearch/BookSearch.component"
-import BookTable from "../components/BookTable/BookTable.component"
-console.log(style)
 const App = () => {
   return (
     <div className={style.App}>
