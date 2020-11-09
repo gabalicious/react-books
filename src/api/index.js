@@ -33,13 +33,27 @@ function fetchDetails(url) {
         return {
             description: response.data.volumeInfo?.description || "",
             title: response.data.volumeInfo?.title || "",
-            authors: response.data.volumeInfo?.authors || "",
+            authors: transformAuthors(response.data.volumeInfo?.authors || ""),
             publisher: response.data.volumeInfo.publisher,
             infoLink: response.data.volumeInfo?.infoLink,
             imageUrl: response.data.volumeInfo?.imageLinks?.thumbnail || "",
         }
     })
 
+}
+
+function transformAuthors(authors) {
+    if (authors.length === 0) {
+        return "";
+    } else if (authors.length === 1) {
+        return authors[0]
+    }
+    else {
+        return authors.reduce((accumulator, currentValue) => {
+            return `${accumulator}, ${currentValue}`;
+
+        })
+    }
 }
 
 export {
