@@ -1,3 +1,18 @@
 .BookSearch {
     margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+.BookSearch__group {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    :global .MuiButtonBase-root.MuiButton-root.MuiButton-contained {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+    :global .MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-formControl {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
 }

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
+import { Modal } from '@material-ui/core';
 import { fetchDetails } from "../../api"
 function getModalStyle() {
   const top = 50;
@@ -24,38 +24,42 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SimpleModal() {
+export default function BookDetailModal(props) {
   const classes = useStyles();
   const [modalStyle] = useState(getModalStyle);
-  const [open, setOpen] = useState(false);
-  const [details, setDetails] = useState(fetchDetails);
+  const [lastUrl, setLastUrl] = useState(null)
+  const [details, setDetails] = useState(null);
+  const [loading, setLoading] = useState(null);
+  useEffect(() => {
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
+    if (props.detailsUrl && props.detailsUrl !== lastUrl) {
+      setLastUrl(props.detailsUrl);
+      setLoading(true);
+      fetchDetails(props.detailsUrl).then((details) => {
+        setDetails(details)
+        setLoading(false);
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-
+      })
+    }
+  })
   const body = (
     <div style={modalStyle} className={classes.paper}>
       <h2 id="simple-modal-title">Details</h2>
-      <p id="simple-modal-description">
-        {details.description}
-      </p>
-      <button>Close Modal</button>
+      {
+        !loading ? (
+          details && (<p dangerouslySetInnerHTML={{ __html: details.description }} id="simple-modal-description">
+
+          </p>)) : (<div>loading...</div>)
+      }
+      <button onClick={props.handleClose}>Close Modal</button>
     </div>
   );
 
   return (
     <div>
-      <button type="button" onClick={handleOpen}>
-        Open Modal
-      </button>
       <Modal
-        open={open}
-        onClose={handleClose}
+        open={props.open}
+        onClose={props.handleClose}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
