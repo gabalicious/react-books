@@ -31,10 +31,14 @@ Cache results in localstorage.
 
 Passing lighthouse accessibility with 100%.
 
+![A11Y passed](https://github.com/gabalicious/react-books/raw/main/assets/screenshot-a11y.png)
+
 * [x] Add books publish date, and make it sortable
 * [x] Add Jest unit tests for the code
 
 Wrote one unit test to check for search button in component and one integration test to simulate book search with mock results.
+
+![Jest tests work](https://github.com/gabalicious/react-books/raw/main/assets/screenshot-tests.png)
 
 * [x] Color the rows with alternating colours (grey / white)
 * [x] Add a modal to show full book details when clicked
