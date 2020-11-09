@@ -2,6 +2,9 @@
     margin-bottom: 20px;
     display: flex;
     justify-content: center;
+    label {
+        display: flex;
+    }
 }
 .BookSearch__group {
     width: 50%;

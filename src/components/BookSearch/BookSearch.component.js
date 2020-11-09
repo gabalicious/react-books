@@ -27,8 +27,12 @@ const BookSearch = () => {
     <>
       <form className={style.BookSearch} onSubmit={handleSubmit}>
         <div className={style.BookSearch__group}>
-          <TextField label="Search..." variant="outlined" value={value} onChange={handleChange} />
-          <Button variant="contained" color="primary" type="submit">Search</Button>
+          <label>
+            <TextField label="Search Input" variant="outlined" value={value} onChange={handleChange} />
+          </label>
+          <label>
+            <Button label="Search Button" variant="contained" color="primary" type="submit">Search</Button>
+          </label>
         </div>
       </form>
       <BookTable currentPage={page} totalItems={totalItems} setPage={setPage} results={results} />
