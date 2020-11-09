@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Modal } from '@material-ui/core';
+import { Modal, Button } from '@material-ui/core';
 import { fetchDetails } from "../../api"
+
+import Description from './Description.component'
+import Thumbnail from './Thumbnail.component'
+import Title from './Title.component'
+import Authors from './Authors.component'
+import InfoLink from './InfoLink.component'
+
 function getModalStyle() {
   const top = 50;
   const left = 50;
@@ -10,6 +17,9 @@ function getModalStyle() {
     top: `${top}%`,
     left: `${left}%`,
     transform: `translate(-${top}%, -${left}%)`,
+    overflow: 'scroll',
+    height: '50%'
+
   };
 }
 
@@ -47,11 +57,17 @@ export default function BookDetailModal(props) {
       <h2 id="simple-modal-title">Details</h2>
       {
         !loading ? (
-          details && (<p dangerouslySetInnerHTML={{ __html: details.description }} id="simple-modal-description">
-
-          </p>)) : (<div>loading...</div>)
+          details && (
+            <div>
+              <Title title={details.title} />
+              <Authors authors={details.authors} />
+              <Thumbnail thumbnail={details.imageUrl} />
+              <InfoLink infoLink={details.infoLink} />
+              <Description description={details.description} />
+            </div>
+          )) : (<div>loading...</div>)
       }
-      <button onClick={props.handleClose}>Close Modal</button>
+      <Button variant="contained" color="secondary" onClick={props.handleClose}>Close Modal</Button>
     </div>
   );
 
