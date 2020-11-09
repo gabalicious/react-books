@@ -27,10 +27,10 @@ const BookSearch = () => {
     <>
       <form className={style.BookSearch} onSubmit={handleSubmit}>
         <div className={style.BookSearch__group}>
-          <label>
+          <label htmlFor="Search Input">
             <TextField label="Search Input" variant="outlined" value={value} onChange={handleChange} />
           </label>
-          <label>
+          <label htmlFor="Search Button">
             <Button label="Search Button" variant="contained" color="primary" type="submit">Search</Button>
           </label>
         </div>
